@@ -5,6 +5,7 @@ public:
   LinkedList();
   void first_node(const Node<T> &node);
   void push_back(const Node<T> &node);
+  void push_front(const Node<T> &node);
 
   const Node<T> *getHead() const;
   const Node<T> *getTail() const;
@@ -31,6 +32,14 @@ template <typename T> void LinkedList<T>::push_back(const Node<T> &node) {
   n->prev = tail;
   tail = n;
   n->next = nullptr;
+}
+
+template <typename T> void LinkedList<T>::push_front(const Node<T> &node) {
+  Node<T> *n = new Node<T>(node);
+  head->prev = n;
+  n->next = head;
+  head = n;
+  n->prev = nullptr;
 }
 
 template <typename T> const Node<T> *LinkedList<T>::getHead() const {

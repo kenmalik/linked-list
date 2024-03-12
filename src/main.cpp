@@ -16,6 +16,9 @@ int main(int argc, char *argv[]) {
   list.push_back(node);
   debugOut(list, "Push back");
 
+  list.push_front(node);
+  debugOut(list, "Push front");
+
   return 0;
 }
 
