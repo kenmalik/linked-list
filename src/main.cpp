@@ -14,18 +14,6 @@ int main(int argc, char *argv[]) {
   list.push_front(1);
   std::cout << list << std::endl;
 
-  list.pop_back();
-  std::cout << list << std::endl;
-
-  list.pop_front();
-  std::cout << list << std::endl;
-
-  list.pop_front();
-  std::cout << list << std::endl;
-
-  list.pop_front();
-  std::cout << list << std::endl;
-
   return 0;
 }
 

@@ -45,8 +45,16 @@ template <typename T> void LinkedList<T>::push_back(const T &item) {
   }
 }
 
+template <typename T> Node<T> *LinkedList<T>::getHead() {
+  return head;
+}
+
 template <typename T> const Node<T> *LinkedList<T>::getHead() const {
   return head;
+}
+
+template <typename T> Node<T> *LinkedList<T>::getTail() {
+  return tail;
 }
 
 template <typename T> const Node<T> *LinkedList<T>::getTail() const {
@@ -83,22 +91,34 @@ template <typename T> void LinkedList<T>::remove(Node<T> *node) {
   Node<T> *w = head;
   while (w != nullptr) {
     if (w == node) {
-      remove_node(head);
+      remove_node(node);
+      return;
     }
     w = w->next;
   }
 }
 
-template <typename T> void LinkedList<T>::remove_node(Node<T> *node) {
-  // if (node == head) {
+template <typename T> void LinkedList<T>::remove_node(Node<T> *&node) {
+  if (node == head) {
+    pop_front();
+  } else if (node == tail) {
+    pop_back();
+  } else {
+    node->next->prev = node->prev;
+    node->prev->next = node->next;
+    delete node;
+  }
 }
 
 template <typename T> void LinkedList<T>::pop_front() {
+  if (head == nullptr || tail == nullptr) {
+    return;
+  }
   if (head == tail) {
     delete head;
     head = nullptr;
     tail = nullptr;
-  } else if (head != nullptr && tail != nullptr) {
+  } else {
     head = head->next;
     delete head->prev;
     head->prev = nullptr;
@@ -106,11 +126,14 @@ template <typename T> void LinkedList<T>::pop_front() {
 }
 
 template <typename T> void LinkedList<T>::pop_back() {
+  if (head == nullptr || tail == nullptr) {
+    return;
+  }
   if (head == tail) {
     delete head;
     head = nullptr;
     tail = nullptr;
-  } else if (tail != nullptr && head != nullptr) {
+  } else {
     tail = tail->prev;
     delete tail->next;
     tail->next = nullptr;
