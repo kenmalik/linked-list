@@ -1,5 +1,9 @@
+#ifndef NODE_HPP
+
 template <typename T> struct Node {
   T data;
-  Node *next;
-  Node *prev;
+  Node *next = nullptr;
+  Node *prev = nullptr;
 };
+
+#endif // !NODE_HPP
