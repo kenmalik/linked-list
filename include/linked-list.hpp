@@ -1,51 +1,41 @@
+#ifndef LINKED_LIST_HPP
+#define LINKED_LIST_HPP
+
 #include "node.hpp"
+#include <iostream>
+#include <ostream>
 
 template <typename T> class LinkedList {
 public:
   LinkedList();
-  void first_node(const Node<T> &node);
-  void push_back(const Node<T> &node);
-  void push_front(const Node<T> &node);
 
   const Node<T> *getHead() const;
   const Node<T> *getTail() const;
+  Node<T> *getHead();
+  Node<T> *getTail();
+
+  void push_front(const T &item);
+  void push_back(const T &item);
+
+  template <typename U>
+  friend std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list);
 
 private:
   Node<T> *head;
   Node<T> *tail;
+
+  Node<T> *createNode(const T &data);
+  void add_first_node(Node<T> *&node);
+
+  void push_front(Node<T> *&node);
+  void push_back(Node<T> *&node);
+
+  Node<T> *search(const T &data);
+  void pop_front();
+  void pop_back();
+  void remove(Node<T> *node);
+  void remove_node(Node<T> *&node);
 };
 
-template <typename T>
-LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr) {}
-
-template <typename T> void LinkedList<T>::first_node(const Node<T> &node) {
-  Node<T> *n = new Node<T>(node);
-  n->next = nullptr;
-  n->prev = nullptr;
-  head = n;
-  tail = n;
-}
-
-template <typename T> void LinkedList<T>::push_back(const Node<T> &node) {
-  Node<T> *n = new Node<T>(node);
-  tail->next = n;
-  n->prev = tail;
-  tail = n;
-  n->next = nullptr;
-}
-
-template <typename T> void LinkedList<T>::push_front(const Node<T> &node) {
-  Node<T> *n = new Node<T>(node);
-  head->prev = n;
-  n->next = head;
-  head = n;
-  n->prev = nullptr;
-}
-
-template <typename T> const Node<T> *LinkedList<T>::getHead() const {
-  return head;
-}
-
-template <typename T> const Node<T> *LinkedList<T>::getTail() const {
-  return tail;
-}
+#include "linked-list.cpp"
+#endif // !LINKED_LIST_HPP
