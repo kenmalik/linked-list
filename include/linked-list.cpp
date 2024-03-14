@@ -45,17 +45,13 @@ template <typename T> void LinkedList<T>::push_back(const T &item) {
   }
 }
 
-template <typename T> Node<T> *LinkedList<T>::getHead() {
-  return head;
-}
+template <typename T> Node<T> *LinkedList<T>::getHead() { return head; }
 
 template <typename T> const Node<T> *LinkedList<T>::getHead() const {
   return head;
 }
 
-template <typename T> Node<T> *LinkedList<T>::getTail() {
-  return tail;
-}
+template <typename T> Node<T> *LinkedList<T>::getTail() { return tail; }
 
 template <typename T> const Node<T> *LinkedList<T>::getTail() const {
   return tail;
@@ -66,7 +62,7 @@ std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list) {
   Node<U> *w = list.head;
   std::cout << "[";
   while (w != nullptr) {
-    std::cout << w->data << " (" << w << ")";
+    std::cout << w->data;
     if (w->next != nullptr) {
       std::cout << ", ";
     }
@@ -115,9 +111,7 @@ template <typename T> void LinkedList<T>::pop_front() {
     return;
   }
   if (head == tail) {
-    delete head;
-    head = nullptr;
-    tail = nullptr;
+    remove_last_node();
   } else {
     head = head->next;
     delete head->prev;
@@ -130,14 +124,26 @@ template <typename T> void LinkedList<T>::pop_back() {
     return;
   }
   if (head == tail) {
-    delete head;
-    head = nullptr;
-    tail = nullptr;
+    remove_last_node();
   } else {
     tail = tail->prev;
     delete tail->next;
     tail->next = nullptr;
   }
+}
+
+template <typename T> void LinkedList<T>::remove_last_node() {
+  delete head;
+  head = nullptr;
+  tail = nullptr;
+}
+
+template <typename T> typename LinkedList<T>::iterator LinkedList<T>::begin() {
+  return NodeIterator<T>(head);
+}
+
+template <typename T> typename LinkedList<T>::iterator LinkedList<T>::end() {
+  return NodeIterator<T>(nullptr);
 }
 
 #endif // !LINKED_LIST_CPP

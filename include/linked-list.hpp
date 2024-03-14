@@ -1,12 +1,17 @@
 #ifndef LINKED_LIST_HPP
 #define LINKED_LIST_HPP
 
-#include "node.hpp"
+#include "node-iterator.hpp"
 #include <iostream>
 #include <ostream>
 
-template <typename T> class LinkedList {
+template <typename T>
+class LinkedList {
 public:
+  typedef NodeIterator<T> iterator;
+  typedef NodeIterator<T> const_iterator;
+  typedef NodeIterator<T> reverse_iterator;
+
   LinkedList();
 
   const Node<T> *getHead() const;
@@ -17,8 +22,14 @@ public:
   void push_front(const T &item);
   void push_back(const T &item);
 
+  void pop_front();
+  void pop_back();
+
   template <typename U>
   friend std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list);
+
+  iterator begin();
+  iterator end();
 
 private:
   Node<T> *head;
@@ -31,10 +42,9 @@ private:
   void push_back(Node<T> *&node);
 
   Node<T> *search(const T &data);
-  void pop_front();
-  void pop_back();
   void remove(Node<T> *node);
   void remove_node(Node<T> *&node);
+  void remove_last_node();
 };
 
 #include "linked-list.cpp"

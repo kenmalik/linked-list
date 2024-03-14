@@ -39,4 +39,6 @@ private:
   Node<T> *current;
 };
 
+#include "node-iterator.cpp"
+
 #endif // !NODE_ITERATOR_H
