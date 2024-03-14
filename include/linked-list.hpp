@@ -2,6 +2,7 @@
 #define LINKED_LIST_HPP
 
 #include "node-iterator.hpp"
+#include "reverse-node-iterator.hpp"
 #include <iostream>
 #include <ostream>
 
@@ -10,7 +11,7 @@ class LinkedList {
 public:
   typedef NodeIterator<T> iterator;
   typedef NodeIterator<T> const_iterator;
-  typedef NodeIterator<T> reverse_iterator;
+  typedef ReverseNodeIterator<T> reverse_iterator;
 
   LinkedList();
 
@@ -30,6 +31,9 @@ public:
 
   iterator begin();
   iterator end();
+
+  reverse_iterator rbegin();
+  reverse_iterator rend();
 
 private:
   Node<T> *head;

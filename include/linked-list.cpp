@@ -146,4 +146,12 @@ template <typename T> typename LinkedList<T>::iterator LinkedList<T>::end() {
   return NodeIterator<T>(nullptr);
 }
 
+template <typename T> typename LinkedList<T>::reverse_iterator LinkedList<T>::rbegin() {
+  return ReverseNodeIterator<T>(tail);
+}
+
+template <typename T> typename LinkedList<T>::reverse_iterator LinkedList<T>::rend() {
+  return ReverseNodeIterator<T>(nullptr);
+}
+
 #endif // !LINKED_LIST_CPP
