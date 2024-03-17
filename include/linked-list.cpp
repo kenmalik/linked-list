@@ -167,4 +167,26 @@ typename LinkedList<T>::const_iterator LinkedList<T>::cend() const {
   return ConstNodeIterator<T>(nullptr);
 }
 
+template <typename T>
+void LinkedList<T>::insert_after(Node<T> *node, const T &item) {
+  if (node == tail) {
+    push_back(item);
+    return;
+  }
+  Node<T> *n = createNode(item);
+  n->prev = node;
+  n->next = node->next;
+  node->next->prev = n;
+  node->next = n;
+}
+
+template <typename T>
+void LinkedList<T>::insert_before(Node<T> *node, const T &item) {
+  if (node == head) {
+    push_front(item);
+    return;
+  }
+  insert_after(node->prev, item);
+}
+
 #endif // !LINKED_LIST_CPP
