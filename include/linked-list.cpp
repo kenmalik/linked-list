@@ -212,4 +212,10 @@ template <typename T> const T &LinkedList<T>::back() const {
   return tail->data;
 }
 
+template <typename T> void LinkedList<T>::clear() {
+  while (length > 0) {
+    pop_back();
+  }
+}
+
 #endif // !LINKED_LIST_CPP

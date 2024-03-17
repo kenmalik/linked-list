@@ -29,6 +29,7 @@ public:
 
   void pop_front();
   void pop_back();
+  void clear();
 
   void insert_after(Node<T> *node, const T &item);
   void insert_before(Node<T> *node, const T &item);
