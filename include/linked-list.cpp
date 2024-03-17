@@ -2,6 +2,7 @@
 #define LINKED_LIST_CPP
 
 #include "linked-list.hpp"
+#include "const-node-iterator.hpp"
 
 template <typename T>
 LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr) {}
@@ -146,12 +147,24 @@ template <typename T> typename LinkedList<T>::iterator LinkedList<T>::end() {
   return NodeIterator<T>(nullptr);
 }
 
-template <typename T> typename LinkedList<T>::reverse_iterator LinkedList<T>::rbegin() {
+template <typename T>
+typename LinkedList<T>::reverse_iterator LinkedList<T>::rbegin() {
   return ReverseNodeIterator<T>(tail);
 }
 
-template <typename T> typename LinkedList<T>::reverse_iterator LinkedList<T>::rend() {
+template <typename T>
+typename LinkedList<T>::reverse_iterator LinkedList<T>::rend() {
   return ReverseNodeIterator<T>(nullptr);
+}
+
+template <typename T>
+typename LinkedList<T>::const_iterator LinkedList<T>::cbegin() const {
+  return ConstNodeIterator<T>(head);
+}
+
+template <typename T>
+typename LinkedList<T>::const_iterator LinkedList<T>::cend() const {
+  return ConstNodeIterator<T>(nullptr);
 }
 
 #endif // !LINKED_LIST_CPP
