@@ -21,6 +21,8 @@ public:
   Node<T> *getTail();
   const size_t size() const;
   const bool empty() const;
+  const T &front() const;
+  const T &back() const;
 
   void push_front(const T &item);
   void push_back(const T &item);

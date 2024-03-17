@@ -2,7 +2,6 @@
 #define LINKED_LIST_CPP
 
 #include "linked-list.hpp"
-#include "const-node-iterator.hpp"
 
 template <typename T>
 LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr) {}
@@ -197,14 +196,20 @@ void LinkedList<T>::insert_before(Node<T> *node, const T &item) {
   insert_after(node->prev, item);
 }
 
-template <typename T>
-const size_t LinkedList<T>::size() const {
+template <typename T> const size_t LinkedList<T>::size() const {
   return length;
 }
 
-template <typename T>
-const bool LinkedList<T>::empty() const {
+template <typename T> const bool LinkedList<T>::empty() const {
   return length == 0;
+}
+
+template <typename T> const T &LinkedList<T>::front() const {
+  return head->data;
+}
+
+template <typename T> const T &LinkedList<T>::back() const {
+  return tail->data;
 }
 
 #endif // !LINKED_LIST_CPP
