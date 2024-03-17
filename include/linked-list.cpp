@@ -14,12 +14,14 @@ template <typename T> Node<T> *LinkedList<T>::createNode(const T &data) {
 template <typename T> void LinkedList<T>::add_first_node(Node<T> *&node) {
   head = node;
   tail = node;
+  length++;
 }
 
 template <typename T> void LinkedList<T>::push_front(Node<T> *&node) {
   head->prev = node;
   node->next = head;
   head = node;
+  length++;
 }
 
 template <typename T> void LinkedList<T>::push_front(const T &item) {
@@ -35,6 +37,7 @@ template <typename T> void LinkedList<T>::push_back(Node<T> *&node) {
   tail->next = node;
   node->prev = tail;
   tail = node;
+  length++;
 }
 
 template <typename T> void LinkedList<T>::push_back(const T &item) {
@@ -104,6 +107,7 @@ template <typename T> void LinkedList<T>::remove_node(Node<T> *&node) {
     node->next->prev = node->prev;
     node->prev->next = node->next;
     delete node;
+    length--;
   }
 }
 
@@ -117,6 +121,7 @@ template <typename T> void LinkedList<T>::pop_front() {
     head = head->next;
     delete head->prev;
     head->prev = nullptr;
+    length--;
   }
 }
 
@@ -130,6 +135,7 @@ template <typename T> void LinkedList<T>::pop_back() {
     tail = tail->prev;
     delete tail->next;
     tail->next = nullptr;
+    length--;
   }
 }
 
@@ -137,6 +143,7 @@ template <typename T> void LinkedList<T>::remove_last_node() {
   delete head;
   head = nullptr;
   tail = nullptr;
+  length--;
 }
 
 template <typename T> typename LinkedList<T>::iterator LinkedList<T>::begin() {
@@ -178,6 +185,7 @@ void LinkedList<T>::insert_after(Node<T> *node, const T &item) {
   n->next = node->next;
   node->next->prev = n;
   node->next = n;
+  length++;
 }
 
 template <typename T>
@@ -187,6 +195,16 @@ void LinkedList<T>::insert_before(Node<T> *node, const T &item) {
     return;
   }
   insert_after(node->prev, item);
+}
+
+template <typename T>
+const size_t LinkedList<T>::size() const {
+  return length;
+}
+
+template <typename T>
+const bool LinkedList<T>::empty() const {
+  return length == 0;
 }
 
 #endif // !LINKED_LIST_CPP

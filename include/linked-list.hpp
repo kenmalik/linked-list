@@ -19,6 +19,8 @@ public:
   const Node<T> *getTail() const;
   Node<T> *getHead();
   Node<T> *getTail();
+  const size_t size() const;
+  const bool empty() const;
 
   void push_front(const T &item);
   void push_back(const T &item);
@@ -44,6 +46,8 @@ public:
 private:
   Node<T> *head;
   Node<T> *tail;
+
+  size_t length = 0;
 
   Node<T> *createNode(const T &data);
   void add_first_node(Node<T> *&node);
