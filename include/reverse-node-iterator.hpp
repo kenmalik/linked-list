@@ -5,7 +5,8 @@
 #include <iterator>
 
 template <typename T>
-class ReverseNodeIterator : public std::iterator<std::bidirectional_iterator_tag, T> {
+class ReverseNodeIterator
+    : public std::iterator<std::bidirectional_iterator_tag, T> {
 public:
   ReverseNodeIterator();
   ReverseNodeIterator(Node<T> *current);

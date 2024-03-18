@@ -5,7 +5,8 @@
 #include <iterator>
 
 template <typename T>
-class ConstNodeIterator : public std::iterator<std::bidirectional_iterator_tag, T> {
+class ConstNodeIterator
+    : public std::iterator<std::bidirectional_iterator_tag, T> {
 public:
   ConstNodeIterator();
   ConstNodeIterator(Node<T> *current);

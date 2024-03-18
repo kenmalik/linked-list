@@ -4,7 +4,6 @@
 #include "const-node-iterator.hpp"
 #include "node-iterator.hpp"
 #include "reverse-node-iterator.hpp"
-#include <iostream>
 #include <ostream>
 
 template <typename T> class LinkedList {
