@@ -89,14 +89,17 @@ template <typename T> void LinkedList<T>::operator+=(const T &item) {
 }
 
 template <typename T> void LinkedList<T>::operator=(const LinkedList<T> &from) {
-  clear();
+  if (&from == this) {
+    return;
+  }
+
+  this->~LinkedList();
   if (from.empty()) {
     return;
   }
-  Node<T> *n = from.head;
-  while (n != nullptr) {
-    push_back(n->data);
-    n = n->next;
+  ConstNodeIterator<T> iter = from.cbegin();
+  for (; iter != from.cend(); ++iter) {
+    push_back(*iter);
   }
 }
 
@@ -238,8 +241,8 @@ template <typename T> const T &LinkedList<T>::back() const {
 }
 
 template <typename T> void LinkedList<T>::clear() {
-  while (length > 0) {
-    pop_back();
+  while (head) {
+    pop_front();
   }
 }
 
