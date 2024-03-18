@@ -10,14 +10,7 @@ LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr), length(0) {}
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList &from)
     : head(nullptr), tail(nullptr), length(0) {
-  if (from.empty()) {
-    return;
-  }
-  Node<T> *n = from.head;
-  while (n != nullptr) {
-    push_back(n->data);
-    n = n->next;
-  }
+  *this = from;
 }
 
 template <typename T> LinkedList<T>::~LinkedList<T>() { clear(); }
@@ -93,6 +86,18 @@ std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list) {
 
 template <typename T> void LinkedList<T>::operator+=(const T &item) {
   push_back(item);
+}
+
+template <typename T> void LinkedList<T>::operator=(const LinkedList<T> &from) {
+  clear();
+  if (from.empty()) {
+    return;
+  }
+  Node<T> *n = from.head;
+  while (n != nullptr) {
+    push_back(n->data);
+    n = n->next;
+  }
 }
 
 template <typename T> Node<T> *LinkedList<T>::search(const T &data) {

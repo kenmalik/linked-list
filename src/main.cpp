@@ -32,7 +32,11 @@ int main() {
 
   list.pop_front();
   list.pop_back();
+  LinkedList<int> list3 = list;
+
   std::cout << "List 1: " << list << std::endl;
   std::cout << "List 2: " << list2 << std::endl;
+  std::cout << "List 3: " << list3 << std::endl;
+
   return 0;
 }

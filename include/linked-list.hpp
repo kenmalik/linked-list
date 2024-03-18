@@ -40,6 +40,7 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list);
 
   void operator+=(const T &item);
+  void operator=(const LinkedList<T> &other);
 
   iterator begin();
   iterator end();
