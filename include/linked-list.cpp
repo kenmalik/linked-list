@@ -6,6 +6,11 @@
 template <typename T>
 LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr) {}
 
+template <typename T>
+LinkedList<T>::~LinkedList<T>() {
+  clear();
+}
+
 template <typename T> Node<T> *LinkedList<T>::createNode(const T &data) {
   return new Node<T>({data});
 }
@@ -73,6 +78,11 @@ std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list) {
   }
   std::cout << "]";
   return os;
+}
+
+template <typename T>
+void LinkedList<T>::operator+=(const T &item) {
+  push_back(item);
 }
 
 template <typename T> Node<T> *LinkedList<T>::search(const T &data) {

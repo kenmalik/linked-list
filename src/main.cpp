@@ -11,7 +11,7 @@ void f(const LinkedList<int> &l) {
 int main() {
   LinkedList<int> list;
   for (int i = 0; i < 10; i++)
-    list.push_back(i);
+    list += i;
   
   std::cout << "\n\n Iterator Test\n";
   for(auto i : list)

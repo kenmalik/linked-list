@@ -14,6 +14,7 @@ public:
   typedef ReverseNodeIterator<T> reverse_iterator;
 
   LinkedList();
+  ~LinkedList();
 
   const Node<T> *getHead() const;
   const Node<T> *getTail() const;
@@ -36,6 +37,8 @@ public:
 
   template <typename U>
   friend std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list);
+
+  void operator+=(const T &item);
 
   iterator begin();
   iterator end();
