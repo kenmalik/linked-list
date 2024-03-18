@@ -12,6 +12,8 @@ int main() {
   LinkedList<int> list;
   for (int i = 0; i < 10; i++)
     list += i;
+
+  LinkedList<int> list2(list);
   
   std::cout << "\n\n Iterator Test\n";
   for(auto i : list)
@@ -26,5 +28,11 @@ int main() {
   {
       std::cout << *i << " ";
   }
+  std::cout << std::endl;
+
+  list.pop_front();
+  list.pop_back();
+  std::cout << "List 1: " << list << std::endl;
+  std::cout << "List 2: " << list2 << std::endl;
   return 0;
 }

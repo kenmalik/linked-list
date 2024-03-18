@@ -2,14 +2,25 @@
 #define LINKED_LIST_CPP
 
 #include "linked-list.hpp"
+#include <iostream>
 
 template <typename T>
-LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr) {}
+LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr), length(0) {}
 
 template <typename T>
-LinkedList<T>::~LinkedList<T>() {
-  clear();
+LinkedList<T>::LinkedList(const LinkedList &from)
+    : head(nullptr), tail(nullptr), length(0) {
+  if (from.empty()) {
+    return;
+  }
+  Node<T> *n = from.head;
+  while (n != nullptr) {
+    push_back(n->data);
+    n = n->next;
+  }
 }
+
+template <typename T> LinkedList<T>::~LinkedList<T>() { clear(); }
 
 template <typename T> Node<T> *LinkedList<T>::createNode(const T &data) {
   return new Node<T>({data});
@@ -80,8 +91,7 @@ std::ostream &operator<<(std::ostream &os, const LinkedList<U> &list) {
   return os;
 }
 
-template <typename T>
-void LinkedList<T>::operator+=(const T &item) {
+template <typename T> void LinkedList<T>::operator+=(const T &item) {
   push_back(item);
 }
 

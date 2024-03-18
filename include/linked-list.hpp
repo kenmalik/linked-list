@@ -14,6 +14,7 @@ public:
   typedef ReverseNodeIterator<T> reverse_iterator;
 
   LinkedList();
+  LinkedList(const LinkedList &from);
   ~LinkedList();
 
   const Node<T> *getHead() const;
@@ -53,7 +54,7 @@ private:
   Node<T> *head;
   Node<T> *tail;
 
-  size_t length = 0;
+  size_t length;
 
   Node<T> *createNode(const T &data);
   void add_first_node(Node<T> *&node);
